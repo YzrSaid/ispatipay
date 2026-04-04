@@ -1,0 +1,50 @@
+# 🔐 Environment variables
+.env
+
+# 🐍 Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 📦 Virtual environment
+venv/
+.env/
+.venv/
+
+# 📂 Session files (Telethon / Telegram)
+*.session
+*.session-journal
+
+# 🧾 Logs
+*.log
+
+# 📦 Build / packaging
+build/
+dist/
+*.spec
+
+# 🧪 Testing / coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# 🧰 IDE / Editor
+.vscode/
+.idea/
+
+# 🖥 OS files
+.DS_Store
+Thumbs.db
+
+# 📁 Temporary files
+*.tmp
+*.temp
+
+# 📦 Pip / cache
+pip-wheel-metadata/
+__pypackages__/
+
+# 🔑 Secrets (just in case)
+*.key
+*.pem

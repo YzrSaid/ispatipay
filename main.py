@@ -7,6 +7,7 @@ from rich.console import Console
 from rich.panel import Panel
 
 from downloader import run_downloader
+from player import run_player
 
 console = Console()
 
@@ -36,8 +37,9 @@ def show_banner():
 def show_menu():
     menu = (
         "[bold green][1][/bold green] Start Downloader\n"
-        "[bold green][2][/bold green] View Source Code\n"
-        "[bold green][3][/bold green] About / Help\n\n"
+        "[bold green][2][/bold green] Play / Stream Music\n"
+        "[bold green][3][/bold green] View Source Code\n"
+        "[bold green][4][/bold green] About / Help\n\n"
         "[bold red][0][/bold red] Exit"
     )
 
@@ -53,16 +55,22 @@ def about():
 
     text = (
         "[bold green]Ispatipay[/bold green]\n\n"
-        "A CLI tool to download Spotify music via Telegram bot.\n\n"
+        "A CLI tool to download or stream Spotify music via Telegram bot.\n\n"
         "[cyan]Features:[/cyan]\n"
         "- Clean CLI UI\n"
         "- Auto audio download\n"
-        "- Loop-based downloader\n\n"
-        "[cyan]Usage:[/cyan]\n"
+        "- Music player / streaming mode\n"
+        "- Playlist support with track selection\n\n"
+        "[cyan]Usage — Downloader:[/cyan]\n"
         "1. Choose Start Downloader\n"
         "2. Paste Spotify link\n"
-        "3. Wait for bot response\n"
-        "4. Audio downloads automatically\n"
+        "3. Audio downloads to ~/Downloads\n\n"
+        "[cyan]Usage — Player:[/cyan]\n"
+        "1. Choose Play / Stream Music\n"
+        "2. Paste Spotify link\n"
+        "3. Audio streams and plays immediately\n"
+        "4. Controls: [P] Pause  [S] Stop  [,/←] Prev  [./→] Next\n"
+        "             [L] Playlist view  [1-9+Enter] Jump to track\n"
     )
 
     console.print(Panel(text, title="About / Help", border_style="cyan"))
@@ -83,6 +91,13 @@ def start_downloader():
     asyncio.run(run_downloader())
 
 
+def start_player():
+    clear()
+    show_banner()
+    console.print("[bold green]Starting music player...[/bold green]\n")
+    asyncio.run(run_player())
+
+
 def main():
     while True:
         clear()
@@ -94,8 +109,10 @@ def main():
         if choice == "1":
             start_downloader()
         elif choice == "2":
-            view_source()
+            start_player()
         elif choice == "3":
+            view_source()
+        elif choice == "4":
             about()
         elif choice == "0":
             console.print("\n[bold red]Exiting...[/bold red]")
